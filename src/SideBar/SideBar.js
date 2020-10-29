@@ -15,8 +15,8 @@ export default class SideBar extends Component{
 
   componentDidMount(){
     let categories = localStorage.getItem('categories') || JSON.stringify([
-      {name:'Work',     id:1},
-      {name:'Study',    id:2},
+      {name:'Trabajo',     id:1},
+      {name:'Estudio',    id:2},
     ]);
     categories = JSON.parse(categories)
     let newCatId = categories.reduce((a,b)=>Math.max(a,b.id),0) + 1;
@@ -92,7 +92,7 @@ export default class SideBar extends Component{
     return (
       <div className={`${styles.sideBar} ${styles[this.state.open? 'sideBar--open':'sideBar--close']}`}>
         <ShowSideButton onClick = {this.toggleSideBar}/>
-        <span>Categories</span>
+        <span>Categorías</span>
         <i className={`material-icons ${styles.icon} ${styles.yellowBall}`} onClick={this.newCategory}>add</i>
         {/* <div className={styles.sideBar__add}>+</div> */}
         {/* <ul> */}
