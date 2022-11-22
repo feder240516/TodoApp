@@ -32,7 +32,7 @@ class App extends Component {
       <div className={styles.app}>
         {/* <ShowSideButton/> */}
 
-        <Header/>
+        {/* <Header/> */}
         <SideBar onSelected={this.changeCategory} selected={this.state.selected}/>
         <ListCards selected = {this.state.selected} selectedName={this.state.selectedName}/>
         

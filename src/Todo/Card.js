@@ -29,7 +29,6 @@ export default class Card extends Component{
       {text:'Hacer el diseño UI', completed: false},
     ]})
     cardData = JSON.parse(cardData);
-    console.log(cardData)
     this.setState({title: cardData.title, subtasks:cardData.subtasks});
   }
 
@@ -59,7 +58,6 @@ export default class Card extends Component{
   }
 
   handleClick = (e)=>{
-      console.log({e:e.target.classList})
       let classList = e.target.classList;
 
       switch(e.target){
@@ -67,7 +65,6 @@ export default class Card extends Component{
           this.addSubtask();
           break;
         case this.state.editButton.current:
-          console.log('aca')
           this.setState({renaming:true});
           break;
         case this.state.deleteButton.current:
@@ -92,7 +89,6 @@ export default class Card extends Component{
   }
 
   handleDoubleClick = ()=>{
-    console.log('double')
     //this.setState({renaming:true})
   }
 
@@ -137,7 +133,6 @@ export default class Card extends Component{
 
   render(){
 
-    console.log(this.state.subtasks.map(task=>task.completed))
 
     let headerContents = this.state.renaming
         ? (<>

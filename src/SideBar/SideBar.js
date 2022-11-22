@@ -15,21 +15,21 @@ export default class SideBar extends Component{
 
   componentDidMount(){
     let categories = localStorage.getItem('categories') || JSON.stringify([
-      {name:'Trabajo',     id:1},
-      {name:'Estudio',    id:2},
+      {name:'Work', id:1},
+      {name:'Study', id:2},
     ]);
     categories = JSON.parse(categories)
     let newCatId = categories.reduce((a,b)=>Math.max(a,b.id),0) + 1;
     localStorage.setItem('newCatId',newCatId);
     this.setState({categories,newCatId});
-    console.log({iddd:categories[0].id})
     this.props.onSelected(categories[0].id,categories[0].name);
   }
 
   newCategory = ()=>{
     this.setState((state,props)=>{
       let categories = state.categories.concat({name:'Categoría nueva', id:state.newCatId});
-      localStorage.setItem(`Category${state.newCatId}`,'[]');
+      // localStorage.setItem(`Category${state.newCatId}`,'[]');
+      localStorage.setItem(`categories`,JSON.stringify(categories));
       return {categories,newCatId: state.newCatId+1}
     })
   }
@@ -92,8 +92,12 @@ export default class SideBar extends Component{
     return (
       <div className={`${styles.sideBar} ${styles[this.state.open? 'sideBar--open':'sideBar--close']}`}>
         <ShowSideButton onClick = {this.toggleSideBar}/>
-        <span>Categorías</span>
-        <i className={`material-icons ${styles.icon} ${styles.yellowBall}`} onClick={this.newCategory}>add</i>
+        <div className={`${styles.sideBar__header}`}>
+          <span>Categorías</span>
+          <button className={`${styles.yellowBall}`} onClick={this.newCategory}>
+            <i className={`material-icons ${styles.icon}`}>add</i>
+          </button>
+        </div>
         {/* <div className={styles.sideBar__add}>+</div> */}
         {/* <ul> */}
           {this.state.categories.map((category,i)=>
@@ -109,7 +113,7 @@ export default class SideBar extends Component{
 
               <div className={`${styles.sideBar__item} ${this.props.selected === category.id? styles['sideBar__item--selected']: ''}`} onClick={(event)=>{this.handleClick(event,category)}} >
                 
-                  {category.name}
+                  <span className={`${styles.categoryTag}`}>{category.name}</span>
                   <i className={`material-icons ${styles.icon }`} onClick={()=>this.startRename(category.id)}>edit</i>
                   <i className={`material-icons ${styles.icon }`} onClick={()=>this.deleteCategory(category.id)}>delete</i>
               </div>
