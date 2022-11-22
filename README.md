@@ -1,7 +1,9 @@
-# TodoApp por Federico Reina 
+# TodoApp by Federico Reina 
 
-Página web para manejar una lista de tareas pendientes.
-Hecha con React.
-Almacena información en localStorage (no persiste a un servidor, y dura en el navegador a menos de que el usuario decida eliminarla)
+Webpage to manage a To-Do List
 
-Hosteado actualmente en https://feder240516.github.io/TodoApp/
+Made with React.
+
+Data is saved to localStorage.
+
+Currently hosted on https://feder240516.github.io/TodoApp/
